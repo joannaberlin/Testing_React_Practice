@@ -16,7 +16,9 @@ const ResultBox = ({ from, to, amount }) => {
 		() => formatAmountInCurrency(amount, from),
 		[amount, from]
 	);
-	if (amount < 0) return <h2 data-testid='output'>Wrong value...</h2>;
+	if (amount < 0) {
+		return <h2 data-testid='output'>Wrong value...</h2>;
+	}
 
 	return (
 		<div data-testid='output' className={styles.result}>
