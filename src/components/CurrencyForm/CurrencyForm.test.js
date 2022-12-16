@@ -51,21 +51,21 @@ describe('Component CurrencyForm', () => {
 
 			const submitButton = screen.getByText('Convert');
 
-			userEvent.click(submitButton);
-
 			const amountField = screen.getByTestId('amount');
 			const fromField = screen.getByTestId('from-select');
 			const toField = screen.getByTestId('to-select');
 
-			userEvent.type(amountField, '100');
+			userEvent.type(amountField, testObj.amount);
 			userEvent.selectOptions(fromField, testObj.from);
 			userEvent.selectOptions(toField, testObj.to);
 
+			userEvent.click(submitButton);
+
 			expect(action).toHaveBeenCalledTimes(1);
 			expect(action).toHaveBeenCalledWith({
-				amount: 100,
-				from: 'PLN',
-				to: 'USD',
+				amount: testObj.amount,
+				from: testObj.from,
+				to: testObj.to,
 			});
 			// unmount component
 			cleanup();
